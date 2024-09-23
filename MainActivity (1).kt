@@ -1,8 +1,6 @@
-package com.example.tipcalculatorv4
+package com.example.tipcalculatorv3
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -21,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tipTV : TextView
     private lateinit var totalTV : TextView
 
-    // private lateinit var button : Button
+    private lateinit var button : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,18 +32,13 @@ class MainActivity : AppCompatActivity() {
         totalTV = findViewById( R.id.total )
         tipTV = findViewById( R.id.tip )
 
-        // button = findViewById( R.id.button )
+        button = findViewById( R.id.button )
 
         // set up event handling by code
-        // button.setOnClickListener { v -> calculate( button ) }
-        // step 2:
-        var tch : TextChangeHandler = TextChangeHandler()
-        // step 3:
-        tipET.addTextChangedListener( tch )
-        amountET.addTextChangedListener( tch 234)
+        button.setOnClickListener { v -> calculate( button ) }
     }
 
-    fun calculate( ) {
+    fun calculate( v : View ) {
         Log.w( "MainActivity", "Inside calculate" )
         try {
             // retrieve user input
@@ -68,22 +61,5 @@ class MainActivity : AppCompatActivity() {
         } catch( e : Exception ) {
             // pop up a dialog box here?
         }
-    }
-
-    // step 1
-    inner class TextChangeHandler : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            // do nothing
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            // do nothing
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-            // calculate()
-            this@MainActivity.calculate()
-        }
-
     }
 }
